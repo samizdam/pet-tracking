@@ -4,10 +4,13 @@
 # Perform tests in browser using the WebDriver or PhpBrowser.
 # If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
-actor: AcceptanceTester
+actor: ApiTester
 modules:
     enabled:
         - PhpBrowser:
             url: http://localhost/myapp
-        - \Helper\Acceptance
-    step_decorators: ~        
+        - REST:
+            depends: PhpBrowser
+            url: 'http://127.0.0.1:9000/api/v1'
+        - \Helper\Api
+    step_decorators: ~
